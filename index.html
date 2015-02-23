@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MLC Library Catalog Search</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+     <![endif]-->
+      
+      <script type="text/Javascript" src="screens/encorelocationfacet.js">
+      //script to refine encore search results to a collection
+      </script>
+  </head>
+  <body>
+    <script type="text/javascript">
+       function searchEncore(){
+            var encoreBaseURLInput,encoreBaseURL, searchInput, scopeInput, searchString, scopeString, locationHref, charRegExString, base64Regex;
+           /*base64_encoding_map includes special characters that need to be
+            encoded using base64 - these chars are "=","/", "\", "?"
+            character : base64 encoded */
+            var base64_encoding_map = {"=":"PQ==", "/": "Lw==", "\\":"XA==", "?":"Pw=="};
+
+            var escapeRegExp = function(string) {
+                return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+            }
+           encoreBaseURLInput = document.getElementById("encoreBase");
+           searchInput = document.getElementById("encoreSearchInput");
+
+            if (searchInput && encoreBaseURLInput) {
+                encoreBaseURL = encoreBaseURLInput.value;
+                searchString = searchInput.value;
+                for(var specialChar in base64_encoding_map) {
+                    charRegExString = escapeRegExp(specialChar);
+                    base64Regex = new RegExp(charRegExString, "g");
+                    searchString = searchString.replace(base64Regex, base64_encoding_map[specialChar])
+                }
+                searchString = encodeURIComponent(searchString);
+
+                scopeInput = document.getElementById('encoreSearchLocation');
+
+                if (scopeInput) {
+                    scopeString = scopeInput.value;
+                }
+
+                if (scopeString) {
+                    scopeString = encodeURIComponent(scopeString);
+                    locationHref = encoreBaseURL + "C__S" + searchString + scopeString +  "__Orightresult__U";
+                } else {
+                    locationHref = encoreBaseURL + "C__S" + searchString + "__Orightresult__U";
+                }
+			
+    			languageSetting = document.getElementById("encoreLanguage");
+			
+    			if (languageSetting) {
+    				locationHref = locationHref + "?lang=" + languageSetting.value;
+    			}
+			
+                window.location.href = locationHref;
+            }
+            return false;
+        }
+    </script>
+        <div style="margin-top: 20px;" class="container">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">MLC Library Catalog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://tdslib.iii.com/">TdS Search</a></li>
+                <li><a href="https://tds.iii.com/iii/cas/login?service=https%3A%2F%2Ftdslib.iii.com%3A443%2Fiii%2Fencore%2Fj_acegi_cas_security_check&lang=eng">Login</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+    
+    <div class="row">
+            
+    <fieldset>
+    <div class="col-lg-6 col-lg-offset-3">
+      <div style="display:none;">
+        <input type="hidden" name="encorebase" id="encorebase" value="http://tdslib.iii.com/iii/encore/search/C|S"/>
+        <input type="hidden" name="searchlocation" id="searchlocation" value="|Ff:facetlocations:am:am:Martin%20Luther%20College::|Orightresult?lang=eng&suite=def" /></div>
+         <div class="input-group input-group-lg">
+          <input type="text" class="form-control" name="target" value="" id="target" placeholder="Search for..." onKeyPress="return submitenter(this,event)"/>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" id="go" onclick="gosearch();">Search</button>
+          </span>
+        </div>
+        <p class="text-right"><a href="http://tdslib.iii.com/iii/encore/home?lang=eng&suite=gold&advancedSearch=true&searchString=">Advanced Search</a></p>
+      </div>
+    </fieldset>
+    
+    <p class="lead text-center">If you are having troubles using the catalog or finding library resources, please ask one of the library staff for assistance.</p>
+    
+    </div>
+  </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
