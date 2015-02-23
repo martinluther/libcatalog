@@ -69,49 +69,63 @@
             return false;
         }
     </script>
-        <div style="margin-top: 20px;" class="container">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">MLC Library Catalog</a>
-            </div>
+  <div style="margin-top: 20px;" class="container">
+    
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+          <a class="navbar-brand" href="#">MLC Library Catalog</a>
+        </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://tdslib.iii.com/">TdS Search</a></li>
-                <li><a href="https://tds.iii.com/iii/cas/login?service=https%3A%2F%2Ftdslib.iii.com%3A443%2Fiii%2Fencore%2Fj_acegi_cas_security_check&lang=eng">Login</a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://tdslib.iii.com/">TdS Search</a></li>
+            <li><a href="https://tds.iii.com/iii/cas/login?service=https%3A%2F%2Ftdslib.iii.com%3A443%2Fiii%2Fencore%2Fj_acegi_cas_security_check&lang=eng">Login</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    
+    <div class="row">      
+      <fieldset>
+        <div class="col-lg-6 col-lg-offset-3">
+          <div style="display:none;">
+            <input type="hidden" name="encorebase" id="encorebase" value="http://tdslib.iii.com/iii/encore/search/C|S"/>
+            <input type="hidden" name="searchlocation" id="searchlocation" value="|Ff:facetlocations:am:am:Martin%20Luther%20College::|Orightresult?lang=eng&suite=def" />
+          </div>
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" name="target" value="" id="target" placeholder="Search for..." onKeyPress="return submitenter(this,event)"/>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit" id="go" onclick="gosearch();">Search</button>
+            </span>
+          </div>
+          
+          <p class="text-right"><a href="http://tdslib.iii.com/iii/encore/home?lang=eng&suite=gold&advancedSearch=true&searchString=">Advanced Search</a></p>
+        </div>
+      </fieldset>
+    </div>
     
     <div class="row">
-            
-    <fieldset>
-    <div class="col-lg-6 col-lg-offset-3">
-      <div style="display:none;">
-        <input type="hidden" name="encorebase" id="encorebase" value="http://tdslib.iii.com/iii/encore/search/C|S"/>
-        <input type="hidden" name="searchlocation" id="searchlocation" value="|Ff:facetlocations:am:am:Martin%20Luther%20College::|Orightresult?lang=eng&suite=def" /></div>
-         <div class="input-group input-group-lg">
-          <input type="text" class="form-control" name="target" value="" id="target" placeholder="Search for..." onKeyPress="return submitenter(this,event)"/>
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="submit" id="go" onclick="gosearch();">Search</button>
-          </span>
-        </div>
-        <p class="text-right"><a href="http://tdslib.iii.com/iii/encore/home?lang=eng&suite=gold&advancedSearch=true&searchString=">Advanced Search</a></p>
-      </div>
-    </fieldset>
+      <p class="col-lg-6 col-lg-offset-3">The Martin Luther College Library can be found in New Ulm, MN on the campus of Martin Luther College. It is part of the greater Traverse des Sioux Library Cooperative.</pd>
+    </div>
     
-    <p class="lead text-center">If you are having troubles using the catalog or finding library resources, please ask one of the library staff for assistance.</p>
-    
+    <div class="row">
+      <a href="http://mlc-wels.edu"><img alt="MLC logo and link" class="col-lg-3 col-lg-offset-3" src="images/mlclogo.png"></a>
+      <a href="http://www.tdslib.org"><img alt="TdS logo and link" class="col-lg-3" src="images/tds.jpg"></a>
+    </div>
+  
+  
+    <div class="row">
+      <h6 class="text-center">If you are having troubles using the catalog or finding library resources, please ask one of the library staff for assistance.</h6>
     </div>
   </div>
 
